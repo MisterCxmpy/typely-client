@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mode {
+  min-height: 200px;
+  height: auto;
+  width: auto;
+  background: #323236;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: start;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  
+  > h1 {
+    margin: 0;
+  }
+  
+  > h3 {
+    margin: 0;
+  }
+
+  > button {
+    width: fit-content;
+    padding: 1.25rem 2.5rem;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    margin-top: auto;
+    font-weight: 500;
+    cursor: pointer;
+
+    &.multiplayer-btn {
+      background: #3d8b40;
+    }
+
+    &.typing-test-btn {
+      background: #003a61;
+    }
+
+    &.race-your-friends-btn {
+      background: #e86200;
+    }
+  }
+}
+
+.profile-panel {
+  height: 500px;
+  background: #323236;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.leaderboard-panel {
+  height: 500px;
+  background: #323236;
+  border-radius: 5px;
+  margin: 10px;
+}
