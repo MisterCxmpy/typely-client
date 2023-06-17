@@ -1,6 +1,7 @@
 import React from "react";
+import Word from "../Word";
 
-const WordsContainer = ({ wordsRef, cursorRef, shuffle, shuffleIndex, activeWord, activeWordChar, handleKeyDown }) => {
+const WordsContainer = ({ wordsRef, cursorRef, shuffle, activeWord, handleKeyDown }) => {
   return (
     <div className="words" onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
       {shuffle.map((w) => (
