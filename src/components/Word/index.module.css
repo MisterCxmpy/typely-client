@@ -1,0 +1,8 @@
+.word {
+  border-bottom: 2px solid transparent;
+  color: var(--sub-color);
+  font-size: 1em;
+  font-variant: no-common-ligatures;
+  line-height: 1em;
+  margin: 0.25em;
+}/*# sourceMappingURL=index.module.css.map */

@@ -1,0 +1,40 @@
+.words {
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  height: -moz-fit-content;
+  padding-bottom: 1em;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  font-size: 1.5rem;
+  height: 156px;
+  overflow: hidden;
+  color: rgb(121, 121, 121);
+}
+
+.words:focus {
+  outline: none;
+}
+
+.cursor {
+  width: 2px;
+  height: 1.6rem;
+  background: white;
+  position: fixed;
+  top: 14px;
+  left: 12px;
+  transition: all 150ms ease 0s;
+  animation: caretFlashSmooth 1s infinite;
+}
+
+@keyframes caretFlashSmooth {
+  0%,to {
+      opacity: 0
+  }
+
+  50% {
+      opacity: 1
+  }
+}

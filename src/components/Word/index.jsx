@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./index.module.css"
 
 const Word = ({ word, isActive }) => {
   return (
-    <div className={`word ${isActive ? "active" : ""}`}>
+    <div className={`${styles["word"]} ${isActive ? "active" : ""}`}>
       {word.split("").map((l, i) => (
-        <span className="letter" key={i}>
+        <span className={styles["letter"]} key={i}>
           {l}
         </span>
       ))}
