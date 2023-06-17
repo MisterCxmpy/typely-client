@@ -37,9 +37,32 @@ const WordsContainer = () => {
   const handleKeyDown = (e) => {
     let key = e.key;
 
+    const letterPattern = /^[A-Za-z]$/;
+
     cursorRef.current.style.animation = "none";
 
-    if (key === "Backspace") {
+    if (key === "Backspace" && e.ctrlKey) {
+      e.preventDefault()
+      if (activeWordChar > 0) {
+        for (let i = 0; i < activeWordChar; i++) {
+          e.target.childNodes[shuffleIndex].childNodes[
+            i
+          ].classList.remove("correct", "incorrect");
+        }
+        setactiveWordChar(0);
+        cursorRef.current.style.top =
+          e.target.childNodes[shuffleIndex].childNodes[0].getBoundingClientRect()
+            .top -
+          wordsRef.current.getBoundingClientRect().top +
+          6 +
+          "px";
+        cursorRef.current.style.left =
+          e.target.childNodes[shuffleIndex].childNodes[0].getBoundingClientRect()
+            .left -
+          wordsRef.current.getBoundingClientRect().left +
+          "px";
+      }
+    } else if (key == "Backspace") {
       if (activeWordChar > 0) {
         e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].classList.remove("correct", "incorrect");
         setactiveWordChar(activeWordChar - 1);
@@ -49,7 +72,7 @@ const WordsContainer = () => {
           e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().left - wordsRef.current.getBoundingClientRect().left + "px"
       }
     } else {
-      if (activeWordChar < activeWord.length) {
+      if (activeWordChar < activeWord.length && letterPattern.test(key)) {
         if (e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().top > 85) {
           // wordsRef.current.style.marginTop = "-40px";
         }
