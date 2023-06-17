@@ -52,11 +52,79 @@
   }
 }
 
-.profile-panel {
+.information-panel {
+  display: flex;
   height: 500px;
-  background: #323236;
-  border-radius: 5px;
-  margin: 10px;
+  flex-direction: row;
+
+  .profile-panel {
+    text-align: start;
+    background: #323236;
+    margin: 10px;
+    width: 70%;
+    border-radius: 5px;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+
+    .user, .friends {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+
+      > h1 {
+        margin: 0;
+        margin-bottom: 10px;
+      }
+      
+      > h4 {
+        margin: 0;
+      }
+    }
+
+    .user {
+
+      .create-account-btn {
+        width: fit-content;
+        padding: 1.25rem 2.5rem;
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+        margin-top: auto;
+        font-weight: 500;
+        cursor: pointer;
+        background: #fb9c4a;
+        color: #202020;
+      }
+    }
+
+    .divider {
+      height: 90%;
+      width: 5px;
+      border-radius: 5px;
+      background: #222223;
+      align-self: center;
+      margin: 0 25px;
+    }
+  }
+
+  .competitions-panel {
+    background: #323236;
+    margin: 10px;
+    width: 30%;
+    border-radius: 5px;
+    text-align: start;
+    padding: 25px;
+
+    > h1 {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    
+    > h4 {
+      margin: 0;
+    }
+  }
 }
 
 .leaderboard-panel {

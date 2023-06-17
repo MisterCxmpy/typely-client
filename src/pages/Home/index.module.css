@@ -47,11 +47,68 @@
   background: #e86200;
 }
 
-.profile-panel {
+.information-panel {
+  display: flex;
   height: 500px;
+  flex-direction: row;
+}
+.information-panel .profile-panel {
+  text-align: start;
   background: #323236;
-  border-radius: 5px;
   margin: 10px;
+  width: 70%;
+  border-radius: 5px;
+  padding: 25px;
+  display: flex;
+  flex-direction: row;
+}
+.information-panel .profile-panel .user, .information-panel .profile-panel .friends {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.information-panel .profile-panel .user > h1, .information-panel .profile-panel .friends > h1 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.information-panel .profile-panel .user > h4, .information-panel .profile-panel .friends > h4 {
+  margin: 0;
+}
+.information-panel .profile-panel .user .create-account-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1.25rem 2.5rem;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  margin-top: auto;
+  font-weight: 500;
+  cursor: pointer;
+  background: #fb9c4a;
+  color: #202020;
+}
+.information-panel .profile-panel .divider {
+  height: 90%;
+  width: 5px;
+  border-radius: 5px;
+  background: #222223;
+  align-self: center;
+  margin: 0 25px;
+}
+.information-panel .competitions-panel {
+  background: #323236;
+  margin: 10px;
+  width: 30%;
+  border-radius: 5px;
+  text-align: start;
+  padding: 25px;
+}
+.information-panel .competitions-panel > h1 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.information-panel .competitions-panel > h4 {
+  margin: 0;
 }
 
 .leaderboard-panel {
