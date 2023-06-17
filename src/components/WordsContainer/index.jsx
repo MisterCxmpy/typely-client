@@ -1,14 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import Word from "../Word";
 import styles from "./index.module.css"
+import english from "../../../data/english";
 
-const WordsContainer = ({ shuffle }) => {
+const WordsContainer = () => {
   const wordsRef = useRef(null);
   const cursorRef = useRef(null);
 
+  const [shuffle, setShuffle] = useState([]);
   const [shuffleIndex, setShuffleIndex] = useState(0);
   const [activeWord, setActiveWord] = useState("");
   const [activeWordChar, setactiveWordChar] = useState(0);
+
+  function shuffleArray(array) {
+    const newArray = [...array];
+  
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+  
+      const temp = newArray[i];
+      newArray[i] = newArray[j];
+      newArray[j] = temp;
+    }
+  
+    return newArray;
+  }
 
   useEffect(() => {
     setActiveWord(shuffle[shuffleIndex]);
@@ -56,12 +72,19 @@ const WordsContainer = ({ shuffle }) => {
     }
   };
 
+  useEffect(() => {
+    const shuffled = shuffleArray(english.words);
+    setShuffle(shuffled);
+  }, []);
+
   return (
-    <div className={styles["words"]} onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
-      {shuffle.map((w) => (
-        <Word key={w} word={w} isActive={activeWord == w} />
-      ))}
-      <div className={styles["cursor"]} ref={cursorRef}></div>
+    <div className={styles["container"]}>
+      <div className={styles["words"]} onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
+        {shuffle.map((w) => (
+          <Word key={w} word={w} isActive={activeWord == w} />
+        ))}
+        <div className={styles["cursor"]} ref={cursorRef}></div>
+      </div>
     </div>
   );
 };
