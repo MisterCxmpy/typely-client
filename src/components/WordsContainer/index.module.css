@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  width: 1200px;
+  width: 100%;
 }
 
 .words {
@@ -28,9 +28,9 @@
   width: 2px;
   height: 1.6rem;
   background: white;
-  position: fixed;
-  top: 14px;
-  left: 12px;
+  position: absolute;
+  top: 8px;
+  left: 6px;
   transition: all 150ms ease 0s;
   animation: caretFlashSmooth 1s infinite;
 }

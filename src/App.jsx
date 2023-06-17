@@ -2,12 +2,17 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { WordsContainer } from "./components";
+import { Navbar } from "./layouts";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<WordsContainer />} />
-    </Routes>
+    <div className="container">
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<WordsContainer />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

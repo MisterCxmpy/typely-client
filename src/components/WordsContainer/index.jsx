@@ -44,14 +44,14 @@ const WordsContainer = () => {
         e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].classList.remove("correct", "incorrect");
         setactiveWordChar(activeWordChar - 1);
         cursorRef.current.style.top =
-          e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().top + 4 + "px";
+          e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top + 6 + "px";
         cursorRef.current.style.left =
-          e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().left + "px";
+          e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().left - wordsRef.current.getBoundingClientRect().left + "px"
       }
     } else {
       if (activeWordChar < activeWord.length) {
         if (e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().top > 85) {
-          wordsRef.current.style.marginTop = "-40px";
+          // wordsRef.current.style.marginTop = "-40px";
         }
 
         if (key === activeWord[activeWordChar]) {
@@ -61,8 +61,8 @@ const WordsContainer = () => {
         }
 
         setactiveWordChar(activeWordChar + 1);
-        cursorRef.current.style.top = e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().top + 4 + "px";
-        cursorRef.current.style.left = e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().right + "px";
+        cursorRef.current.style.top = e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top + 6 + "px";
+        cursorRef.current.style.left = e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().right - wordsRef.current.getBoundingClientRect().left + "px";
       } else if (key === " ") {
         cursorRef.current.style.left = parseFloat(cursorRef.current.style.left) + 12 + "px";
         e.target.childNodes[shuffleIndex].classList.remove("active");
@@ -83,8 +83,8 @@ const WordsContainer = () => {
         {shuffle.map((w) => (
           <Word key={w} word={w} isActive={activeWord == w} />
         ))}
-        <div className={styles["cursor"]} ref={cursorRef}></div>
       </div>
+      <div className={styles["cursor"]} ref={cursorRef}></div>
     </div>
   );
 };
