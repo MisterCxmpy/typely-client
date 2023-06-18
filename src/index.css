@@ -3,10 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #222223;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,10 +11,11 @@
 }
 
 .correct {
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
 }
 .incorrect {
-  color: rgb(197, 66, 66);
+  color: var(--error-color);
+  text-decoration: underline;
 }
 
 h1 {

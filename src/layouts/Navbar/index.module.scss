@@ -1,0 +1,15 @@
+
+.navbar {
+  padding: 0 12.5px;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: auto 1fr;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
