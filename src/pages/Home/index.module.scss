@@ -13,7 +13,7 @@
   height: auto;
   width: auto;
   background: var(--sub-color);
-  border-radius: 5px;
+  border-radius: var(--border-radius);;
   margin: 10px;
   text-align: start;
   padding: 25px;
@@ -33,7 +33,7 @@
     width: fit-content;
     padding: 1.25rem 2.5rem;
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);;
     border: none;
     margin-top: auto;
     font-weight: 500;
@@ -53,7 +53,7 @@
     background: #323236;
     margin: 10px;
     width: 66%;
-    border-radius: 5px;
+    border-radius: var(--border-radius);;
     padding: 25px;
     display: flex;
     flex-direction: row;
@@ -75,7 +75,7 @@
         width: fit-content;
         padding: 1.25rem 2.5rem;
         font-size: 20px;
-        border-radius: 5px;
+        border-radius: var(--border-radius);;
         border: none;
         margin-top: auto;
         font-weight: 500;
@@ -88,7 +88,7 @@
     .divider {
       height: 90%;
       width: 5px;
-      border-radius: 5px;
+      border-radius: var(--border-radius);;
       background: #222223;
       align-self: center;
       margin: 0 25px;
@@ -99,7 +99,7 @@
     background: #323236;
     margin: 10px;
     width: 30%;
-    border-radius: 5px;
+    border-radius: var(--border-radius);;
     text-align: start;
     padding: 25px;
     color: var(--text-color);
@@ -118,6 +118,6 @@
 .leaderboard-panel {
   height: 500px;
   background: #323236;
-  border-radius: 5px;
+  border-radius: var(--border-radius);;
   margin: 10px;
 }

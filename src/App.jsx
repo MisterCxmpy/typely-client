@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { WordsContainer } from "./components";
 import { Navbar } from "./layouts";
-import { Home } from "./pages";
+import { Home, Practice } from "./pages";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
-          <Route path="/practice" element={<WordsContainer />} />
+          <Route path="/practice" element={<Practice />} />
         </Route>
       </Routes>
     </div>

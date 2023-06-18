@@ -101,13 +101,13 @@ const WordsContainer = () => {
   }, []);
 
   return (
-    <div className={styles["container"]}>
+    <div className="typing-test">
       <div className={styles["words"]} onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
-        {shuffle.map((w) => (
-          <Word key={w} word={w} isActive={activeWord == w} />
-        ))}
+          {shuffle.map((w) => (
+            <Word key={w} word={w} isActive={activeWord == w} />
+          ))}
+        <div className={styles["cursor"]} ref={cursorRef}></div>
       </div>
-      <div className={styles["cursor"]} ref={cursorRef}></div>
     </div>
   );
 };
