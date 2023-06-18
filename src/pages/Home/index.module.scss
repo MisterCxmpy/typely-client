@@ -37,18 +37,8 @@
     margin-top: auto;
     font-weight: 500;
     cursor: pointer;
-
-    &.multiplayer-btn {
-      background: #3d8b40;
-    }
-
-    &.typing-test-btn {
-      background: #003a61;
-    }
-
-    &.race-your-friends-btn {
-      background: #e86200;
-    }
+    background: #fb9c4a;
+    color: #202020;
   }
 }
 
@@ -61,7 +51,7 @@
     text-align: start;
     background: #323236;
     margin: 10px;
-    width: 70%;
+    width: 66%;
     border-radius: 5px;
     padding: 25px;
     display: flex;
@@ -71,11 +61,6 @@
       display: flex;
       flex-direction: column;
       width: 50%;
-
-      > h1 {
-        margin: 0;
-        margin-bottom: 10px;
-      }
       
       > h4 {
         margin: 0;
