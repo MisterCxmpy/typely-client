@@ -1,6 +1,19 @@
-.typing-test {
+.typing-content {
   overflow: hidden;
   height: 156px;
+}
+
+.typing-stats {
+  display: grid;
+  font-size: .75rem;
+  gap: 1rem;
+  grid-auto-flow: column;
+  height: max-content;
+  justify-content: start;
+  transition: .125s;
+  width: 100%;
+  padding: 0 7.25px;
+  font-size: 1.25rem;
 }
 
 .words {

@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Word from "../Word";
 import styles from "./index.module.css"
 import english from "../../../data/english";
+import useGameTimer from "../../hooks/useGameTimer";
 
 const WordsContainer = () => {
   const wordsRef = useRef(null);
   const cursorRef = useRef(null);
 
-  const [gameStarted, setGameStarted] = useState(false)
-  const [gameTimer, setGameTimer] = useState(30)
+  const { gameStarted, gameTimer, startTimer } = useGameTimer();
 
   const [shuffle, setShuffle] = useState([]);
   const [shuffleIndex, setShuffleIndex] = useState(0);
@@ -74,7 +74,7 @@ const WordsContainer = () => {
   const handleOtherKey = (key) => {
     const activeWordNode = wordsRef.current.childNodes[shuffleIndex];
     const letterPattern = /^[A-Za-z]$/;
-    setGameStarted(true)
+    startTimer()
 
     if (activeWordChar < activeWord.length && letterPattern.test(key)) {
       const charNode = activeWordNode.childNodes[activeWordChar];
@@ -115,18 +115,20 @@ const WordsContainer = () => {
       setactiveWordChar(0);
     }
   };
-  
+
   const handleKeyDown = (e) => {
     const key = e.key;
     cursorRef.current.style.animation = "none";
 
-    if (key === "Backspace" && e.ctrlKey) {
-      e.preventDefault();
-      handleCtrlBackspace();
-    } else if (key === "Backspace") {
-      handleBackspaceKey();
-    } else {
-      handleOtherKey(key);
+    if (gameTimer > 0 || !gameStarted) {
+      if (key === "Backspace" && e.ctrlKey) {
+        e.preventDefault();
+        handleCtrlBackspace();
+      } else if (key === "Backspace") {
+        handleBackspaceKey();
+      } else {
+        handleOtherKey(key);
+      }
     }
   };
 
@@ -137,11 +139,16 @@ const WordsContainer = () => {
 
   return (
     <div className={styles["typing-test"]}>
-      <div className={styles["words"]} onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
-          {shuffle.map((w) => (
-            <Word key={w} word={w} isActive={activeWord == w} />
-          ))}
-        <div className={styles["cursor"]} ref={cursorRef}></div>
+      <div className={styles["typing-stats"]} style={gameStarted ? {opacity: 1} : {opacity: 0}}>
+        <span className={styles["timer"]}>{gameTimer}</span>
+      </div>
+      <div className={styles["typing-content"]}>
+        <div className={styles["words"]} onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
+            {shuffle.map((w) => (
+              <Word key={w} word={w} isActive={activeWord == w} />
+            ))}
+          <div className={styles["cursor"]} ref={cursorRef}></div>
+        </div>
       </div>
     </div>
   );
