@@ -1,8 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useTypingConfig } from '../contexts/TypingConfigContext';
 
 const useGameTimer = () => {
+  const { timer } = useTypingConfig()
+
+  
   const [gameStarted, setGameStarted] = useState(false);
-  const [gameTimer, setGameTimer] = useState(30);
+  const [gameTimer, setGameTimer] = useState(timer);
+  
+  useEffect(() => {
+    setGameTimer(timer)
+  }, [timer])
 
   useEffect(() => {
     let intervalId;
@@ -30,7 +38,7 @@ const useGameTimer = () => {
 
   const resetTimer = () => {
     setGameStarted(false);
-    setGameTimer(30);
+    setGameTimer(timer);
   };
 
   return { gameStarted, gameTimer, startTimer, resetTimer };

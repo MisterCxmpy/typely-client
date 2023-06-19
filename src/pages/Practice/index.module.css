@@ -24,7 +24,12 @@
   border-radius: var(--border-radius);
   display: flex;
 }
-.test-settings .row .text-button {
+.test-settings div {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.text-button {
   align-content: center;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -53,6 +58,9 @@
   padding: 0.75rem 0.5rem 0.7rem;
   transition: 0.125s;
 }
-.test-settings .row .text-button:hover {
+.text-button.active {
+  color: var(--main-color);
+}
+.text-button:hover {
   color: var(--text-color);
 }/*# sourceMappingURL=index.module.css.map */

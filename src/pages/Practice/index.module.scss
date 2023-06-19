@@ -22,36 +22,45 @@
     background: var(--sub-color);
     border-radius: var(--border-radius);;
     display: flex;
+  }
 
-    .text-button {
-      align-content: center;
-      appearance: none;
-      border: none;
-      border-radius: var(--border-radius);
-      color: var(--sub-alt-color);
-      cursor: pointer;
-      display: grid;
-      font-family: inherit;
-      font-size: 1em;
-      gap: 0.25em;
-      grid-auto-flow: column;
-      height: -moz-min-content;
-      height: min-content;
-      line-height: 1.25em;
-      padding: 0.5em;
-      text-align: center;
-      text-decoration: none;
-      transition: background .125s,color .125s;
-      -webkit-user-select: none;
-      user-select: none;
-      width: -moz-max-content;
-      width: max-content;
-      padding: 0.75rem 0.5rem 0.7rem;
-      transition: .125s;
+  div {
+    display: grid;
+    grid-auto-flow: column;
+  }
+}
 
-      &:hover {
-        color: var(--text-color);
-      }
-    }
+.text-button {
+  align-content: center;
+  appearance: none;
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--sub-alt-color);
+  cursor: pointer;
+  display: grid;
+  font-family: inherit;
+  font-size: 1em;
+  gap: 0.25em;
+  grid-auto-flow: column;
+  height: -moz-min-content;
+  height: min-content;
+  line-height: 1.25em;
+  padding: 0.5em;
+  text-align: center;
+  text-decoration: none;
+  transition: background .125s,color .125s;
+  -webkit-user-select: none;
+  user-select: none;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.75rem 0.5rem 0.7rem;
+  transition: .125s;
+
+  &.active {
+    color: var(--main-color);
+  }
+
+  &:hover {
+    color: var(--text-color);
   }
 }
