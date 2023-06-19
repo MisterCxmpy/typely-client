@@ -88,7 +88,6 @@ export default function Home() {
         <ProfilePanel />
         <CompetitionsPanel />
       </div>
-      <div className={styles["leaderboard-panel"]}></div>
     </div>
   );
 }

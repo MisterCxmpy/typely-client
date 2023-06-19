@@ -7,6 +7,9 @@ const WordsContainer = () => {
   const wordsRef = useRef(null);
   const cursorRef = useRef(null);
 
+  const [gameStarted, setGameStarted] = useState(false)
+  const [gameTimer, setGameTimer] = useState(30)
+
   const [shuffle, setShuffle] = useState([]);
   const [shuffleIndex, setShuffleIndex] = useState(0);
   const [activeWord, setActiveWord] = useState("");
@@ -34,64 +37,96 @@ const WordsContainer = () => {
     }
   }, [shuffleIndex, shuffle]);
 
-  const handleKeyDown = (e) => {
-    let key = e.key;
+  const handleCtrlBackspace = () => {
+    const activeWordNode = wordsRef.current.childNodes[shuffleIndex];
 
+    if (activeWordChar > 0) {
+      for (let i = 0; i < activeWordChar; i++) {
+        activeWordNode.childNodes[i].classList.remove("correct", "incorrect");
+      }
+      setactiveWordChar(0);
+      const firstCharNode = activeWordNode.childNodes[0];
+      cursorRef.current.style.top =
+        firstCharNode.getBoundingClientRect().top -
+        wordsRef.current.getBoundingClientRect().top +
+        6 +
+        "px";
+      cursorRef.current.style.left =
+        firstCharNode.getBoundingClientRect().left -
+        wordsRef.current.getBoundingClientRect().left +
+        "px";
+    }
+  }
+
+  const handleBackspaceKey = () => {
+    const activeWordNode = wordsRef.current.childNodes[shuffleIndex];
+
+    if (activeWordChar > 0) {
+      activeWordNode.childNodes[activeWordChar - 1].classList.remove("correct", "incorrect");
+      setactiveWordChar(activeWordChar - 1);
+      cursorRef.current.style.top =
+      activeWordNode.childNodes[activeWordChar - 1].getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top + 6 + "px";
+      cursorRef.current.style.left =
+      activeWordNode.childNodes[activeWordChar - 1].getBoundingClientRect().left - wordsRef.current.getBoundingClientRect().left + "px"
+    }
+  };
+  
+  const handleOtherKey = (key) => {
+    const activeWordNode = wordsRef.current.childNodes[shuffleIndex];
     const letterPattern = /^[A-Za-z]$/;
+    setGameStarted(true)
 
+    if (activeWordChar < activeWord.length && letterPattern.test(key)) {
+      const charNode = activeWordNode.childNodes[activeWordChar];
+      console.log(charNode.getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top);
+      if (charNode.getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top > 77) {
+        wordsRef.current.style.marginTop = "-40px";
+      }
+  
+      if (key === activeWord[activeWordChar]) {
+        charNode.classList.add("correct");
+      } else {
+        charNode.classList.add("incorrect");
+      }
+  
+      setactiveWordChar(activeWordChar + 1);
+      cursorRef.current.style.top =
+        charNode.getBoundingClientRect().top -
+        wordsRef.current.getBoundingClientRect().top +
+        6 +
+        "px";
+      cursorRef.current.style.left =
+        charNode.getBoundingClientRect().right -
+        wordsRef.current.getBoundingClientRect().left +
+        "px";
+    } else if (key === " ") {
+      const nextWordNode = wordsRef.current.childNodes[shuffleIndex + 1].childNodes[0];
+      cursorRef.current.style.top =
+        nextWordNode.getBoundingClientRect().top -
+        wordsRef.current.getBoundingClientRect().top +
+        6 +
+        "px";
+      cursorRef.current.style.left =
+        nextWordNode.getBoundingClientRect().left -
+        wordsRef.current.getBoundingClientRect().left +
+        "px";
+      activeWordNode.classList.remove("active");
+      setShuffleIndex(shuffleIndex + 1);
+      setactiveWordChar(0);
+    }
+  };
+  
+  const handleKeyDown = (e) => {
+    const key = e.key;
     cursorRef.current.style.animation = "none";
 
     if (key === "Backspace" && e.ctrlKey) {
-      e.preventDefault()
-      if (activeWordChar > 0) {
-        for (let i = 0; i < activeWordChar; i++) {
-          e.target.childNodes[shuffleIndex].childNodes[
-            i
-          ].classList.remove("correct", "incorrect");
-        }
-        setactiveWordChar(0);
-        cursorRef.current.style.top =
-          e.target.childNodes[shuffleIndex].childNodes[0].getBoundingClientRect()
-            .top -
-          wordsRef.current.getBoundingClientRect().top +
-          6 +
-          "px";
-        cursorRef.current.style.left =
-          e.target.childNodes[shuffleIndex].childNodes[0].getBoundingClientRect()
-            .left -
-          wordsRef.current.getBoundingClientRect().left +
-          "px";
-      }
-    } else if (key == "Backspace") {
-      if (activeWordChar > 0) {
-        e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].classList.remove("correct", "incorrect");
-        setactiveWordChar(activeWordChar - 1);
-        cursorRef.current.style.top =
-          e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top + 6 + "px";
-        cursorRef.current.style.left =
-          e.target.childNodes[shuffleIndex].childNodes[activeWordChar - 1].getBoundingClientRect().left - wordsRef.current.getBoundingClientRect().left + "px"
-      }
+      e.preventDefault();
+      handleCtrlBackspace();
+    } else if (key === "Backspace") {
+      handleBackspaceKey();
     } else {
-      if (activeWordChar < activeWord.length && letterPattern.test(key)) {
-        if (e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().top > 85) {
-          // wordsRef.current.style.marginTop = "-40px";
-        }
-
-        if (key === activeWord[activeWordChar]) {
-          e.target.childNodes[shuffleIndex].childNodes[activeWordChar].classList.add("correct");
-        } else {
-          e.target.childNodes[shuffleIndex].childNodes[activeWordChar].classList.add("incorrect");
-        }
-
-        setactiveWordChar(activeWordChar + 1);
-        cursorRef.current.style.top = e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().top - wordsRef.current.getBoundingClientRect().top + 6 + "px";
-        cursorRef.current.style.left = e.target.childNodes[shuffleIndex].childNodes[activeWordChar].getBoundingClientRect().right - wordsRef.current.getBoundingClientRect().left + "px";
-      } else if (key === " ") {
-        cursorRef.current.style.left = parseFloat(cursorRef.current.style.left) + 12 + "px";
-        e.target.childNodes[shuffleIndex].classList.remove("active");
-        setShuffleIndex(shuffleIndex + 1);
-        setactiveWordChar(0);
-      }
+      handleOtherKey(key);
     }
   };
 
@@ -101,7 +136,7 @@ const WordsContainer = () => {
   }, []);
 
   return (
-    <div className="typing-test">
+    <div className={styles["typing-test"]}>
       <div className={styles["words"]} onKeyDown={handleKeyDown} ref={wordsRef} tabIndex={0}>
           {shuffle.map((w) => (
             <Word key={w} word={w} isActive={activeWord == w} />
